@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Playlist Sorter</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <style>
+     
+     body{background: lavender;}
+     h1 , h3 {color: darkviolet;}
+     .box {background: white; color: darkviolet;}
+
+    </style>
+
+</head>
+<body>
+    
+    <div class="container py-4">
+
+        <h1 class="mb-1">My Playlist Sorter</h1>
+        <p class="text-muted mb-4">Sort and label your music playlist using Javascript array methods. </p>
+
+        <!--Topic 1 & 2: sort() and reverse() -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3 class="card-title">Song Names</h3>
+                <button class="btn btn-primary mr-2" onclick="sortAZ()">Sort A to Z</button>
+                <button class="btn btn-primary" onclick="sortZA()">Sort Z to A</button>
+                <div id="name-result" class="box p-3 mt-3 rounded"></div>
+            </div>
+        </div>
+
+        <!--Topic 3: Sort with compare function-->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3 class="card-title">Play Counts</h3>
+                <button class="btn btn-primary mr-2" onclick="sortleast()">Least Played First</button>
+                <button class="btn btn-primary" onclick="sortmost()">Most Played First</button>
+                <div id="count-Result" class="box p-3 mt-3 rounded"></div>
+            </div>
+        </div>
+
+        <!--Topic 4: map()-->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3 class="card-title">Label Every Play Count</h3>
+                <button class="btn btn-primary" onclick="addLabel()">Add Plays Label</button>
+                <div id="label-result" class="box p-3 mt-3 rounded"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+        var songs = ["Zoom" , "Bounce" , "Glow" , "Rush" , "Spark"];  //Topic 1 & 2
+        var plays = [320, 85, 210, 50, 175];    //Topic 3
+        
+        document.getElementById("name-result").innerHTML  = "Songs: " + songs;
+        document.getElementById("count-Result").innerHTML  = "Plays: " + plays;
+        document.getElementById("label-result").innerHTML  = "Press the button above! "; 
+
+        function sortAZ() {
+            songs.sort();
+            document.getElementById("name-result").innerHTML  = "A to Z:" + songs;
+        }
+        
+        function sortZA() {
+            songs.sort();
+            songs.reverse();
+            document.getElementById("name-result").innerHTML  = "Z to A:" + songs;
+        }
+
+        function sortleast() {
+            plays.sort(function(a,b) {return a-b;});
+            document.getElementById("count-Result").innerHTML  = "Least Played First :" + plays;
+        }
+
+        function sortmost() {
+            plays.sort(function(a,b) {return b-a;});
+            document.getElementById("count-Result").innerHTML  = "Most Played First :" + plays;
+        }
+
+        function addLabel() {
+            var l = plays.map(function(c){return c+ "plays"})
+            document.getElementById("label-result").innerHTML = "Labelled :" +l;
+        }
+            
+    </script>
+</body>
+</html>
