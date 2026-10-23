@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Daily Task Manager</title>
+
+    <link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background: linear-gradient(to right, #e0f7fa, #e1bee7);
+        }
+
+        h1, h3 {
+            color: #6a1b9a;
+        }
+
+        .task-box {
+            background-color: white;
+            color: #4a148c;
+            border: 2px solid #ce93d8;
+            border-radius: 12px;
+        }
+
+        .card {
+            border-radius: 15px;
+        }
+
+        button {
+            margin: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container py-4">
+
+    <h1 class="mb-2">My Daily Task Manager 📚</h1>
+
+    <p class="text-muted mb-4">
+        Organize your daily tasks and manage your time wisely!
+    </p>
+
+    <!-- Topic 1: sort() and reverse() -->
+    <div class="card mb-4">
+        <div class="card-body">
+
+            <h3>My Daily Tasks</h3>
+
+            <button class="btn btn-primary" onclick="sortAZ()">
+                Sort A to Z
+            </button>
+
+            <button class="btn btn-secondary" onclick="sortZA()">
+                Sort Z to A
+            </button>
+
+            <div id="taskResult" class="task-box p-3 mt-3"></div>
+
+        </div>
+    </div>
+
+    <!-- Topic 2: Sorting numbers -->
+    <div class="card mb-4">
+        <div class="card-body">
+
+            <h3>Time Required for Tasks</h3>
+
+            <button class="btn btn-success" onclick="sortShortest()">
+                Shortest First
+            </button>
+
+            <button class="btn btn-warning" onclick="sortLongest()">
+                Longest First
+            </button>
+
+            <div id="timeResult" class="task-box p-3 mt-3"></div>
+
+        </div>
+    </div>
+
+    <!-- Topic 3: map() -->
+    <div class="card mb-4">
+        <div class="card-body">
+
+            <h3>Task Time Labels</h3>
+
+            <button class="btn btn-info" onclick="addLabels()">
+                Show Time Labels
+            </button>
+
+            <div id="labelResult" class="task-box p-3 mt-3"></div>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+    // Array of daily tasks
+    var tasks = [
+        "Complete Homework",
+        "Read a Book",
+        "Exercise",
+        "Pack School Bag",
+        "Revise Lessons"
+    ];
+
+    // Time needed for each task, in minutes
+    var minutes = [40, 20, 30, 10, 25];
+
+    // Display the original arrays
+    document.getElementById("taskResult").innerHTML =
+        "My Tasks: " + tasks.join(", ");
+
+    document.getElementById("timeResult").innerHTML =
+        "Time in minutes: " + minutes.join(", ");
+
+    document.getElementById("labelResult").innerHTML =
+        "Click the button to see time labels.";
+
+    // Sort tasks alphabetically
+    function sortAZ() {
+        tasks.sort();
+
+        document.getElementById("taskResult").innerHTML =
+            "Tasks A to Z: " + tasks.join(", ");
+    }
+
+    // Sort tasks in reverse alphabetical order
+    function sortZA() {
+        tasks.sort();
+        tasks.reverse();
+
+        document.getElementById("taskResult").innerHTML =
+            "Tasks Z to A: " + tasks.join(", ");
+    }
+
+    // Sort time from shortest to longest
+    function sortShortest() {
+        minutes.sort(function(a, b) {
+            return a - b;
+        });
+
+        document.getElementById("timeResult").innerHTML =
+            "Shortest first: " + minutes.join(", ") + " minutes";
+    }
+
+    // Sort time from longest to shortest
+    function sortLongest() {
+        minutes.sort(function(a, b) {
+            return b - a;
+        });
+
+        document.getElementById("timeResult").innerHTML =
+            "Longest first: " + minutes.join(", ") + " minutes";
+    }
+
+    // Add labels using map()
+    function addLabels() {
+        var labelledMinutes = minutes.map(function(time) {
+            return time + " minutes";
+        });
+
+        document.getElementById("labelResult").innerHTML =
+            "Time for each task:<br>" + labelledMinutes.join("<br>");
+    }
+
+</script>
+
+</body>
+</html>
